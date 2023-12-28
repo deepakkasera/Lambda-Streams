@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -73,7 +75,7 @@ public class Main {
         // Interview Problem : Sorting
         List<Integer> numbers = Arrays.asList(1, 5, 2, 4, 3, 10, 7, 8);
         Collections.sort(numbers);
-        System.out.println(numbers);
+        //System.out.println(numbers);
 
         Car car1 = new Car("A", 1000, 150);
         Car car2 = new Car("B", 1500, 200);
@@ -84,8 +86,12 @@ public class Main {
         List<Car> cars = Arrays.asList(car1, car2, car3, car4, car5, car6);
 
         Comparator<Car> comparator = (c1, c2) -> c1.power - c2.power;
-        Collections.sort(cars, comparator);
+        //Collections.sort(cars, comparator);
 
-        System.out.println(cars);
+        //System.out.println(cars);
+
+        Stream<Car> stream = cars.stream();
+        List<Integer> carPrices = stream.map( (car) -> car.price).collect(Collectors.toList());
+        System.out.println(carPrices);
     }
 }
